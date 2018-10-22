@@ -1,0 +1,7 @@
+*.log
+public/*.js
+public/*.js.map
+public/font
+public/img
+node_modules/*
+
