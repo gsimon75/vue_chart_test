@@ -9,11 +9,11 @@ pipeline {
         }*/
         stage('Build Prod') {
             steps {
-	        sh 'whoami'
 		sh 'pwd'
 		sh 'ls -lR'
 		sh 'node --version'
 		sh 'npm --version'
+	        sh 'while sleep 1; do echo "."; done'
                 sh 'npm install'
                 sh 'npm run buildprod'
             }
