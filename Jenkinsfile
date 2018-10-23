@@ -6,25 +6,31 @@ pipeline {
         }
     }
     stages {
+        stage('Prepare') {
+            steps {
+                sh 'export HOME="$PWD"'
+                sh 'npm install'
+            }
+        }
         /*stage('Build Dev') {
             steps {
-                sh 'npm install'
+                sh 'export HOME="$PWD"'
                 sh 'npm run builddev'
             }
         }*/
         stage('Build Prod') {
             steps {
                 sh 'export HOME="$PWD"'
-                sh 'while sleep 1; do echo "."; done'
                 sh 'npm install'
                 sh 'npm run buildprod'
             }
         }
         stage('Pack Result') {
             steps {
+                sh 'export HOME="$PWD"'
                 sh 'rm -rf node_modules'
                 sh 'npm install --production'
-                sh 'docker image build -t vue-chart-test:latest .'
+                //sh 'docker image build -t vue-chart-test:latest .'
             }
         }
     }
