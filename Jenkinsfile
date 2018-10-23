@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'node:10.5' } }
+    agent {
+        docker {
+            image 'node:10.5'
+            args '-u root --privileged'
+        }
+    }
     stages {
         /*stage('Build Dev') {
             steps {
@@ -9,11 +14,8 @@ pipeline {
         }*/
         stage('Build Prod') {
             steps {
-		sh 'pwd'
-		sh 'ls -lR'
-		sh 'node --version'
-		sh 'npm --version'
-	        sh 'while sleep 1; do echo "."; done'
+                sh 'export HOME="$PWD"'
+                sh 'while sleep 1; do echo "."; done'
                 sh 'npm install'
                 sh 'npm run buildprod'
             }
@@ -27,3 +29,4 @@ pipeline {
         }
     }
 }
+// vim: set ts=4 sw=4 et ft=groovy:
