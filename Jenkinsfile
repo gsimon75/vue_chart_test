@@ -5,6 +5,9 @@ pipeline {
             args '-u root --privileged'
         }
     }
+    environment {
+        YADDA = '42'
+    }
     stages {
         stage('Prepare') {
             steps {
@@ -31,6 +34,12 @@ pipeline {
                 sh 'rm -rf node_modules'
                 sh 'npm install --production'
                 //sh 'docker image build -t vue-chart-test:latest .'
+                app = docker.build("vue-chart-test:latest")
+            }
+        }
+        stage('Test') {
+            steps {
+                app.run()
             }
         }
     }
