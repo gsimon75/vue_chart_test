@@ -34,12 +34,16 @@ pipeline {
                 sh 'rm -rf node_modules'
                 sh 'npm install --production'
                 //sh 'docker image build -t vue-chart-test:latest .'
-                def app = docker.build("vue-chart-test:latest")
+                script {
+                    def app = docker.build("vue-chart-test:latest")
+                }
             }
         }
         stage('Test') {
             steps {
-                app.run()
+                script {
+                    app.run()
+                }
             }
         }
     }
