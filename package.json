@@ -21,7 +21,7 @@
     "node-getopt": "^0.3.2"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-component": "^1.1.1",
